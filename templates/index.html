@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Useless</title>
+    <link rel="stylesheet" href="../static/main.css">
 </head>
 <body>
     <header>
         <h1>The most useless site ever</h1>
+        <a href="/newpost">Создать пост</a>
     </header>
     <section>
-        
+        {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.text }}</p>
+        </div>
+        {% endfor %}
     </section>
 </body>
 </html>
