@@ -17,6 +17,10 @@ def add_post_to_file(filename, title, text):
     with open(filename, 'a') as file:
         file.write(f'{title}\n{text}\n\n')
 
+def add_feedback_to_file(title, text):
+    with open("feedback", 'a') as file:
+        file.write(f'{title}\n{text}\n\n')
+
 posts_file = 'data.txt'
 
 
@@ -34,3 +38,12 @@ def newpost():
         add_post_to_file(posts_file, title, text)
         return redirect(url_for('home'))
     return render_template('newpost.html')
+
+@app.route("/feedback", methods=['GET','POST'])
+def feedback():
+    if request.method == 'POST':
+        title = request.form['title']
+        text = request.form['text']
+        add_feedback_to_file(title, text)
+        return redirect(url_for('home'))
+    return render_template('feedback.html')
